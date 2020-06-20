@@ -17,7 +17,7 @@ make_scoring_tbl <- function(scoring_rules){
     map_lgl(all)
   if(any(check_one)){
     one_pos <- scoring_rules %>% map(names) %>% map(`!=`, "all_pos") %>%
-      map_lgl(all) %>% scoring_rules[.] %>% map(as.tibble) %>%
+      map_lgl(all) %>% scoring_rules[.] %>% map(as_tibble) %>%
       imap(~ add_column(.x, pos = scoring_positions[[.y]])) %>%
       map(gather, "data_col", "points", -pos) %>% bind_rows()
   } else {
